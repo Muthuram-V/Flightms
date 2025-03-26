@@ -1,26 +1,36 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
+import { createRouter, createWebHistory  } from 'vue-router'
+import HomeView from '../views/HomeView.vue';
+import Dashboard from '../views/Dashboard.vue';
+import Flights from '../views/Flights.vue';
+import Bookings from '../views/Bookings.vue';
+import Broadcast from '../views/Broadcast.vue';
+import HelpDesk from '../views/HelpDesk.vue';
+import ManageAircraft from '../views/ManageAircraft.vue';
+import Payments from '../views/Payments.vue';
+import ReportsAnalytics from '../views/ReportsAnalytics.vue';
+import Staff from '../views/Staff.vue';
 
 const routes = [
   {
     path: '/',
     name: 'home',
-    component: HomeView
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: function () {
-      return import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-    }
+    component: HomeView,
+    children: [
+      { path: '/dashboard', name: 'Dashboard', component: Dashboard },
+      { path: '/flights', name: 'Flights', component: Flights },
+      { path: '/bookings', name: 'Bookings', component: Bookings },
+      { path: '/broadcast', name: 'Broadcast', component: Broadcast },
+      { path: '/helpdesk', name: 'HelpDesk', component: HelpDesk },
+      { path: '/manageAircrafts', name: 'ManageAircraft', component: ManageAircraft },
+      { path: '/paymentsRefunds', name: 'Payments', component: Payments },
+      { path: '/reportsAnalytics', name: 'ReportsAnalytics', component: ReportsAnalytics },
+      { path: '/staff', name: 'Staff', component: Staff }
+    ],
   }
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHistory(process.env.BASE_URL),
   routes
 })
 
